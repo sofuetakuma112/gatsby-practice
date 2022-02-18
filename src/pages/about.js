@@ -16,6 +16,9 @@ const Home = ({ data, location }) => {
         pagetitle="ESSENTIALSについて"
         pagedesc="食べ物についての情報を発信しているサイトです。"
         pagepath={location.pathname}
+        pageimg={data.about.childImageSharp.original.src}
+        pageimgw={data.about.childImageSharp.original.width}
+        pageimgh={data.about.childImageSharp.original.height}
       />
       <div className="eyecatch">
         <figure>
@@ -78,6 +81,11 @@ export const query = graphql`
       childImageSharp {
         fluid(maxWidth: 1600) {
           ...GatsbyImageSharpFluid_withWebp
+        }
+        original {
+          height
+          src
+          width
         }
       }
     }

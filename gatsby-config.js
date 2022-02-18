@@ -5,6 +5,14 @@
  */
 
 module.exports = {
+  siteMetadata: {
+    title: "ESSENTIALS",
+    description: "おいしい食材と食事を探求するサイト",
+    lang: "ja",
+    siteUrl: "https://priceless-aryabhata-c5c774.netlify.app",
+    locale: "ja_JP",
+    fbappid: "XXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  },
   plugins: [
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
@@ -15,5 +23,6 @@ module.exports = {
         path: `${__dirname}/src/images/`,
       },
     },
+    "gatsby-plugin-react-helmet",
   ],
 }

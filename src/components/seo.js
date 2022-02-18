@@ -40,6 +40,7 @@ const Seo = props => {
 
       <link rel="canonical" href={url} />
 
+      {/* OGP設定 */}
       <meta property="og:site_name" content={data.site.siteMetadata.title} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

@@ -1,6 +1,7 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 
@@ -99,6 +100,27 @@ const Home = ({ data }) => {
           />
         </figure>
       </section>
+      <section>
+        <div className="container">
+          <h2 className="sr-only">RECENT POSTS</h2>
+          <div className="posts">
+            {data.allContentfulBlogPost.edges.map(({ node }) => (
+              <article className="post" key={node.id}>
+                <Link to={`/blog/post/${node.slug}/`}>
+                  <figure>
+                    <GatsbyImage
+                      image={getImage(node.eyecatch.gatsbyImageData)}
+                      alt={node.eyecatch.description}
+                      style={{ width: "100%" }}
+                    />
+                  </figure>
+                  <h3>{node.title}</h3>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
     </Layout>
   )
 }
@@ -139,6 +161,23 @@ export const query = graphql`
       childImageSharp {
         fluid(maxWidth: 1600) {
           ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    allContentfulBlogPost(
+      sort: { fields: publishDate, order: DESC }
+      limit: 4
+      skip: 0
+    ) {
+      edges {
+        node {
+          title
+          id
+          eyecatch {
+            gatsbyImageData(width: 573)
+            description
+          }
+          slug
         }
       }
     }
